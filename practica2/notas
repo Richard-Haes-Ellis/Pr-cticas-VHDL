@@ -1,0 +1,60 @@
+Tenemos que hacer un monitor
+
+recibir movimientos de pines y generar transacciones
+
+No estamos usando un uut -> Va a monitorizar el mismo protocolo que hace el driver
+
+EL sitio bueno par amuestrear en simulacione es enn el flanco de bajada ya que en ese momento es cuando no hay 
+movimiento de pines, es como si fuese un zero-order hold block 
+
+Comprobar si enable vale nose que dunrante muchos ciclos --> hacemos un procedure dentro de un bucle for o
+algo del estilo 
+
+Memoria,
+
+Un unico pdf con las dos practicas, trabajo realizado y demostracion del funcioamiento mediante simualciones 
+
+
+testbench separado para driver y monitor 
+
+¿Como planteamos el monitor?
+
+Queremos ver las cosas en flancos de bajada para evitar condiciones de carrera
+
+process
+begin
+if(ena = '1') then 
+    -- Comprobar cosas
+    dato deja de dar alta impedancia y da datos
+
+    bucle for con wait until falling_edge 
+    read data 
+    end loop
+    output_tran.data(31 downto 30)<=dta;
+
+else
+    wait until falling_edge(clk); -- mejor 
+end if;
+
+end process
+
+¿Como probamos el monitor? 
+
+Otro hdl que inclua los componentes : tb_monitor
+ 
+instanciamos nuestro driver 
+
+le damos algunas transacciones y miramos las transacciones que nos escupe 
+
+Para sacar nota podemos hacer un comprobador --> checker
+ un pqueño proceso que compruebe que sean iguales 
+
+Y un pequeño processo en la entrada --> Generator
+ que genere transacciones simplonas a partir de una lista o algo 
+
+
+1) Decarar drver como componenet
+2) Declarar input_tran 
+3) Instanciar el driver 
+
+Entrega de las practicas: Una entrega para todo 
